@@ -1,1 +1,1 @@
-g++ main.cpp -o program.exe -I SFML-2.5.1/include -L SFML-2.5.1/lib -l sfml-graphics-d -l sfml-window-d -l sfml-system-d
+g++ main.cpp Game/*.cpp -o game.exe -I SFML-2.5.1/include -L SFML-2.5.1/lib -l sfml-graphics-d -l sfml-window-d -l sfml-system-d
