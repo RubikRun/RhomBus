@@ -10,6 +10,27 @@ int const FRAMERATE_LIMIT = 30;
 
 sf::Keyboard::Key const KEY_QUIT_GAME = sf::Keyboard::Escape;
 
+MultiShape CreateRhomBusMultiShape()
+{
+    sf::ConvexShape* body = new sf::ConvexShape(4);
+    body->setPoint(0, {0, 50});
+    body->setPoint(1, {80, 0});
+    body->setPoint(2, {160, 50});
+    body->setPoint(3, {80, 100});
+
+    sf::CircleShape* leftTyre = new sf::CircleShape(25);
+    leftTyre->setPosition({10, 60});
+
+    sf::CircleShape* rightTyre = new sf::CircleShape(25);
+    rightTyre->setPosition({100, 60});
+
+    return MultiShape({
+        body,
+        leftTyre,
+        rightTyre
+    });
+}
+
 } // namespace
 
 namespace RhomBus
@@ -19,7 +40,8 @@ Game::Game()
     : _window( // Initialize window to be fullscreen
         sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT),
         "GameName",
-        sf::Style::Fullscreen)
+        sf::Style::Fullscreen),
+    _rhomBus(CreateRhomBusMultiShape())
 {
     // Set frame rate limit to not torture the GPU too much
     _window.setFramerateLimit(FRAMERATE_LIMIT);
@@ -60,6 +82,8 @@ void Game::Update()
 { /* nothing */ }
 
 void Game::Draw()
-{ /* nothing */ }
+{
+    _rhomBus.Draw(_window);
+}
 
 } // namespace RhomBus

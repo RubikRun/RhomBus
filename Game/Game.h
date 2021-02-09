@@ -2,6 +2,8 @@
 
 #include <SFML/Graphics.hpp>
 
+#include "MultiShape/MultiShape.h"
+
 namespace RhomBus
 {
 
@@ -40,6 +42,9 @@ class Game
 
     /// The window where the game is rendered
     sf::RenderWindow _window;
+
+    /// RhomBus as a multishape to be drawn on the screen
+    MultiShape _rhomBus;
 };
 
 } // namespace RhomBus
