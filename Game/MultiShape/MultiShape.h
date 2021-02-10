@@ -49,7 +49,7 @@ class MultiShape
      * @param[in] window
      *  The window where the multishape will be drawn
      */
-    void Draw(sf::RenderWindow& window);
+    void Draw(sf::RenderTarget& window);
 
     /**
      * Frees the memory of each component shape

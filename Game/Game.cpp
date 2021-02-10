@@ -12,17 +12,13 @@ sf::Keyboard::Key const KEY_QUIT_GAME = sf::Keyboard::Escape;
 
 MultiShape CreateRhomBusMultiShape()
 {
-    sf::ConvexShape* body = new sf::ConvexShape(4);
-    body->setPoint(0, {0, 50});
-    body->setPoint(1, {80, 0});
-    body->setPoint(2, {160, 50});
-    body->setPoint(3, {80, 100});
+    RhombusShape* body = new RhombusShape(600, 300, {300, 150});
 
-    sf::CircleShape* leftTyre = new sf::CircleShape(25);
-    leftTyre->setPosition({10, 60});
+    sf::CircleShape* leftTyre = new sf::CircleShape(80);
+    leftTyre->setPosition({70, 200});
 
-    sf::CircleShape* rightTyre = new sf::CircleShape(25);
-    rightTyre->setPosition({100, 60});
+    sf::CircleShape* rightTyre = new sf::CircleShape(80);
+    rightTyre->setPosition({370, 200});
 
     return MultiShape({
         body,

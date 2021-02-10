@@ -22,7 +22,7 @@ MultiShape::MultiShape(
 }
 
 void MultiShape::Draw(
-    sf::RenderWindow& window)
+    sf::RenderTarget& window)
 {
     for (sf::Shape* component : _components)
     {

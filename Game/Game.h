@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 
 #include "MultiShape/MultiShape.h"
+#include "RhombusShape/RhombusShape.h"
 
 namespace RhomBus
 {
@@ -30,7 +31,7 @@ class Game
      */
     ~Game();
 
-  private:
+  private: /* functions */
 
     /// Updates the game for the next frame.
     void Update();
@@ -38,7 +39,7 @@ class Game
     /// Draws the game to the window
     void Draw();
 
-  private:
+  private: /* variables */
 
     /// The window where the game is rendered
     sf::RenderWindow _window;
