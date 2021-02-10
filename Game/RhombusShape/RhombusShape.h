@@ -30,7 +30,7 @@ class RhombusShape : public sf::ConvexShape
     RhombusShape(
         float horizontal,
         float vertical,
-        sf::Vector2f const& center = {0, 0});
+        sf::Vector2f const& center = {0.f, 0.f});
 
     /**
      * Returns the position of the center

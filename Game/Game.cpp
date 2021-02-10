@@ -12,13 +12,13 @@ sf::Keyboard::Key const KEY_QUIT_GAME = sf::Keyboard::Escape;
 
 MultiShape CreateRhomBusMultiShape()
 {
-    RhombusShape* body = new RhombusShape(600, 300, {300, 150});
+    RhombusShape* body = new RhombusShape(600, 300);
 
     sf::CircleShape* leftTyre = new sf::CircleShape(80);
-    leftTyre->setPosition({70, 200});
+    leftTyre->setPosition({-230, 50});
 
     sf::CircleShape* rightTyre = new sf::CircleShape(80);
-    rightTyre->setPosition({370, 200});
+    rightTyre->setPosition({70, 50});
 
     return MultiShape({
         body,
@@ -75,7 +75,28 @@ Game::~Game()
 { /* nothing */ }
 
 void Game::Update()
-{ /* nothing */ }
+{
+    _rhomBus.SetPosition(
+        {(float)sf::Mouse::getPosition().x, (float)sf::Mouse::getPosition().y}
+    );
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+    {
+        static_cast<RhombusShape*>(_rhomBus[0])->ChangeVertical(8);
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+    {
+        static_cast<RhombusShape*>(_rhomBus[0])->ChangeVertical(-8);
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+    {
+        static_cast<RhombusShape*>(_rhomBus[0])->ChangeHorizontal(8);
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+    {
+        static_cast<RhombusShape*>(_rhomBus[0])->ChangeHorizontal(-8);
+    }
+}
 
 void Game::Draw()
 {
