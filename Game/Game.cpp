@@ -6,26 +6,9 @@ namespace
 int const SCREEN_WIDTH = 1920;
 int const SCREEN_HEIGHT = 1080;
 
-int const FRAMERATE_LIMIT = 30;
+int const FRAMERATE_LIMIT = 60;
 
 sf::Keyboard::Key const KEY_QUIT_GAME = sf::Keyboard::Escape;
-
-MultiShape CreateRhomBusMultiShape()
-{
-    RhombusShape* body = new RhombusShape(600, 300);
-
-    sf::CircleShape* leftTyre = new sf::CircleShape(80);
-    leftTyre->setPosition({-230, 50});
-
-    sf::CircleShape* rightTyre = new sf::CircleShape(80);
-    rightTyre->setPosition({70, 50});
-
-    return MultiShape({
-        body,
-        leftTyre,
-        rightTyre
-    });
-}
 
 } // namespace
 
@@ -37,10 +20,13 @@ Game::Game()
         sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT),
         "GameName",
         sf::Style::Fullscreen),
-    _rhomBus(CreateRhomBusMultiShape())
+    _rhomBus({SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2})
 {
     // Set frame rate limit to not torture the GPU too much
     _window.setFramerateLimit(FRAMERATE_LIMIT);
+
+    // Vertical sync for some monitors that get screen tearing
+    _window.setVerticalSyncEnabled(true);
 }
 
 void Game::Run()
@@ -76,26 +62,26 @@ Game::~Game()
 
 void Game::Update()
 {
-    _rhomBus.SetPosition(
-        {(float)sf::Mouse::getPosition().x, (float)sf::Mouse::getPosition().y}
-    );
+    float const speed = 0.1f;
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
     {
-        static_cast<RhombusShape*>(_rhomBus[0])->ChangeVertical(8);
+        _rhomBus.ApplyVelocityForce({0, -speed});
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
     {
-        static_cast<RhombusShape*>(_rhomBus[0])->ChangeVertical(-8);
+        _rhomBus.ApplyVelocityForce({0, speed});
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
     {
-        static_cast<RhombusShape*>(_rhomBus[0])->ChangeHorizontal(8);
+        _rhomBus.ApplyVelocityForce({speed, 0});
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
     {
-        static_cast<RhombusShape*>(_rhomBus[0])->ChangeHorizontal(-8);
+        _rhomBus.ApplyVelocityForce({-speed, 0});
     }
+
+    _rhomBus.Update();
 }
 
 void Game::Draw()

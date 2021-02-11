@@ -2,8 +2,7 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "MultiShape/MultiShape.h"
-#include "RhombusShape/RhombusShape.h"
+#include "RhomBusEntity/RhomBusEntity.h"
 
 namespace RhomBus
 {
@@ -44,8 +43,8 @@ class Game
     /// The window where the game is rendered
     sf::RenderWindow _window;
 
-    /// RhomBus as a multishape to be drawn on the screen
-    MultiShape _rhomBus;
+    /// RhomBus as an entity object
+    RhomBusEntity _rhomBus;
 };
 
 } // namespace RhomBus
