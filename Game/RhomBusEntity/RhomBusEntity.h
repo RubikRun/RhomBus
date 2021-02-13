@@ -100,6 +100,34 @@ class RhomBusEntity : public MultiShape
      */
     static std::vector<sf::Shape*> CreateComponents(float size);
 
+    /**
+     * Loads the texture for RhomBus' tyres
+     */
+    void LoadTyreTexture();
+
+    /**
+     * Sets texture to both tyres of the RhomBus.
+     * 
+     * @param[in] texture
+     *  texture to set
+     */
+    void SetTextureToTyres(
+      sf::Texture* texture);
+
+    /**
+     * Loads the texture for RhomBus' body
+     */
+    void LoadBodyTexture();
+
+    /**
+     * Sets texture to the body of the RhomBus.
+     * 
+     * @param[in] texture
+     *  texture to set
+     */
+    void SetTextureToBody(
+      sf::Texture* texture);
+
   private: /* variables */
 
     /// The size of the big diagonal of the rhombus shape
@@ -107,6 +135,12 @@ class RhomBusEntity : public MultiShape
 
     /// Velocity vector. Indicates the speed and direction at which the RhomBus is moving.
     sf::Vector2f _velocity;
+
+    /// Texture for RhomBus' tyres
+    sf::Texture _tyreTexture;
+
+    /// Texture for the body of the RhomBus
+    sf::Texture _bodyTexture;
 
     /// Default size of the big diagonal of the rhombus shape
     static float const RHOMBUS_DEFAULT_SIZE;
