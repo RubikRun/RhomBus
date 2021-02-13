@@ -19,6 +19,26 @@ RhomBusEntity::RhomBusEntity(
         MultiShape(CreateComponents(size), position)
 {}
 
+float RhomBusEntity::GetHorizontalSize() const
+{
+    return _size;
+}
+
+float RhomBusEntity::GetVerticalSize() const
+{
+    return GetCenterHeight() + RHOMBUS_SMALL_DIAGONAL * _size / 2.f;
+}
+
+float RhomBusEntity::GetCenterHeight() const
+{
+    return RHOMBUS_GROUND_HEIGHT * _size;
+}
+
+sf::Vector2f RhomBusEntity::GetVelocity() const
+{
+    return _velocity;
+}
+
 void RhomBusEntity::ApplyVelocityForce(
     sf::Vector2f const& velocityForce)
 {
@@ -30,13 +50,18 @@ void RhomBusEntity::Update()
     MultiShape::Move(_velocity);
 }
 
+sf::Vector2f RhomBusEntity::GetNextPosition() const
+{
+    return MultiShape::GetPosition() + _velocity;
+}
+
 std::vector<sf::Shape*>
 RhomBusEntity::CreateComponents(float size)
 {
     // Construct body - a rhombus shape
     RhombusShape* body = new RhombusShape(
         size,
-        size * RHOMBUS_SMALL_DIAGONAL
+        RHOMBUS_SMALL_DIAGONAL * size
     );
 
     float const tyreRadius = RHOMBUS_TYRE_RADIUS * size;

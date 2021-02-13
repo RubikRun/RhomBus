@@ -7,8 +7,8 @@ MultiShape::MultiShape()
 MultiShape::MultiShape(
     std::vector<sf::Shape*> const& components,
     sf::Vector2f const& center)
-    : _components(components),
-    _center(center)
+        : _components(components),
+        _center(center)
 {}
 
 MultiShape::MultiShape(

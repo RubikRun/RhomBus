@@ -20,8 +20,7 @@ class RhomBusEntity : public MultiShape
      *  position of the center of the rhombus shape
      */
     RhomBusEntity(
-        sf::Vector2f const& position = {0, 0}
-    );
+        sf::Vector2f const& position = {0, 0});
 
     /**
      * Creates a RhomBus entity with given size
@@ -33,7 +32,38 @@ class RhomBusEntity : public MultiShape
      */
     RhomBusEntity(
         float size,
-        sf::Vector2f const& position = {0, 0});
+        sf::Vector2f const& position = {0, 0}
+    );
+
+    /**
+     * Returns the horizontal size of the whole RhomBus multishape
+     * 
+     * @return horizontal size
+     */
+    float GetHorizontalSize() const;
+
+    /**
+     * Returns the vertical size of the whole RhomBus multishape
+     * 
+     * @return vertical size
+     */
+    float GetVerticalSize() const;
+
+    /**
+     * Returns the height of the center,
+     * relative to where the ground would be under the RhomBus
+     * 
+     * @return
+     *  y-coordinate of center, relative to the ground level
+     */
+    float GetCenterHeight() const;
+
+    /**
+     * Returns the velocity vector of the RhomBus
+     * 
+     * @return velocity vector
+     */
+    sf::Vector2f GetVelocity() const;
 
     /**
      * Applies force with the given velocity,
@@ -48,6 +78,14 @@ class RhomBusEntity : public MultiShape
      * Updates the RhomBus for the next frame
      */
     void Update();
+
+    /**
+     * Returns the position of the RhomBus in the next potential frame,
+     * without actually updating the position
+     * 
+     * @return position in the next frame
+     */
+    sf::Vector2f GetNextPosition() const;
 
   private: /* functions */
 
